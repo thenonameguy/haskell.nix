@@ -531,25 +531,7 @@ in {
 
                 ghc-patches = ghc-patches "8.10.6";
             });
-            ghc8107 = final.callPackage ../compiler/ghc (traceWarnOld "8.10" {
-                extra-passthru = { buildGHC = final.buildPackages.haskell-nix.compiler.ghc8107; };
-
-                bootPkgs = bootPkgs // {
-                  ghc = ghcForBuilding810;
-                };
-                inherit sphinx installDeps;
-
-                buildLlvmPackages = final.buildPackages.llvmPackages_12;
-                llvmPackages = final.llvmPackages_12;
-
-                src-spec = rec {
-                    version = "8.10.7";
-                    url = "https://downloads.haskell.org/~ghc/${version}/ghc-${version}-src.tar.xz";
-                    sha256 = "179ws2q0dinl1a39wm9j37xzwm84zfz3c5543vz8v479khigdvp3";
-                };
-
-                ghc-patches = ghc-patches "8.10.7";
-            });
+            ghc8107 = final.haskell.compiler.ghc810;
             ghc901 = final.callPackage ../compiler/ghc (traceWarnOld "9.0" {
                 extra-passthru = { buildGHC = final.buildPackages.haskell-nix.compiler.ghc901; };
 
